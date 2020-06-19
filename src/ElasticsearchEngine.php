@@ -161,12 +161,16 @@ class ElasticsearchEngine extends Engine
         }
 
         if ($builder->callback) {
-            return call_user_func(
+            $query = call_user_func(
                 $builder->callback,
                 $this->elastic,
                 $builder->query,
                 $params
             );
+
+            if (isset($query['range'])) {
+                $params['body']['query']['range'] = $query['range'];
+            }
         }
 
         return $this->elastic->search($params);
