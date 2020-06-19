@@ -167,10 +167,6 @@ class ElasticsearchEngine extends Engine
                 $builder->query,
                 $params
             );
-
-            if (isset($query['range'])) {
-                $params['body']['query']['bool']['must'] = array_merge($params['body']['query']['bool']['must'], $query);
-            }
         }
 
         return $this->elastic->search($params);
