@@ -169,7 +169,7 @@ class ElasticsearchEngine extends Engine
             );
             
             if (isset($query['range'])) {
-                $params['body']['query']['range']['must']['range'] = $query['range'];
+                $params['body']['query']['bool']['must']['range'] = $query['range'];
             }
         }
 
