@@ -171,6 +171,7 @@ class ElasticsearchEngine extends Engine
             if (isset($query['range'])) {
                 $params['body']['query']['bool']['must']['range'] = $query['range'];
             }
+            \Illuminate\Support\Facades\Log::error($params);
         }
 
         return $this->elastic->search($params);
