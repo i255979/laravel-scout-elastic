@@ -167,6 +167,10 @@ class ElasticsearchEngine extends Engine
                 $builder->query,
                 $params
             );
+            
+            if (isset($query['range'])) {
+                $params['body']['query']['range'] = $query['range'];
+            }
         }
 
         return $this->elastic->search($params);
